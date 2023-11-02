@@ -16,7 +16,7 @@ const FilterAutomation = ({ data, handleFilterData }) => {
   const [disableStartScroll, setDisableStartScroll] = useState(true);
   const [disableEndScroll, setDisableEndScroll] = useState(false);
   const wrapperRef = useRef(null);
-  const getFilterOptions = () => {
+  const getFilterOptions = useCallback(() => {
     const categoryFilter = [];
     const siteFilter = [];
     data.forEach((item) => {
@@ -30,10 +30,8 @@ const FilterAutomation = ({ data, handleFilterData }) => {
       siteFilter.push(...siteItem);
     });
     setCategoryOptions([...new Set(categoryFilter)]);
-    console.log("[...new Set(categoryFilter)]", [...new Set(categoryFilter)]);
     setSiteOptions([...new Set(siteFilter)]);
-    console.log("[...new Set(siteFilter)]", [...new Set(siteFilter)]);
-  };
+  }, [data]);
   const handleSiteChange = (dataList) => {
     if (siteSelectedItems.length) {
       const filteredItem = dataList.filter((item) => {
@@ -78,7 +76,9 @@ const FilterAutomation = ({ data, handleFilterData }) => {
     );
     setDisableStartScroll(wrapperRef.current.scrollLeft < 50);
   };
-  useEffect(() => getFilterOptions, [data]);
+  useEffect(() => {
+    getFilterOptions();
+  }, [data, getFilterOptions]);
   useEffect(() => {
     filterChangeHandler();
     showArrowHandle();
