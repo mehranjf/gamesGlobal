@@ -16,7 +16,7 @@ const FilterAutomation = ({ data, handleFilterData }) => {
   const [disableStartScroll, setDisableStartScroll] = useState(true);
   const [disableEndScroll, setDisableEndScroll] = useState(false);
   const wrapperRef = useRef(null);
-  const getFilterOptions = useCallback(() => {
+  const getFilterOptions = () => {
     const categoryFilter = [];
     const siteFilter = [];
     data.forEach((item) => {
@@ -33,7 +33,7 @@ const FilterAutomation = ({ data, handleFilterData }) => {
     console.log("[...new Set(categoryFilter)]", [...new Set(categoryFilter)]);
     setSiteOptions([...new Set(siteFilter)]);
     console.log("[...new Set(siteFilter)]", [...new Set(siteFilter)]);
-  }, [data]);
+  };
   const handleSiteChange = (dataList) => {
     if (siteSelectedItems.length) {
       const filteredItem = dataList.filter((item) => {
