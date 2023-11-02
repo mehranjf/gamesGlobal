@@ -75,7 +75,7 @@ const FilterAutomation = ({ data, handleFilterData }) => {
     );
     setDisableStartScroll(wrapperRef.current.scrollLeft < 50);
   };
-  useEffect(() => getFilterOptions, [data, getFilterOptions]);
+  useEffect(() => getFilterOptions, [data]);
   useEffect(() => {
     filterChangeHandler();
     showArrowHandle();
