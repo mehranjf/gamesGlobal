@@ -30,7 +30,9 @@ const FilterAutomation = ({ data, handleFilterData }) => {
       siteFilter.push(...siteItem);
     });
     setCategoryOptions([...new Set(categoryFilter)]);
+    console.log("[...new Set(categoryFilter)]", [...new Set(categoryFilter)]);
     setSiteOptions([...new Set(siteFilter)]);
+    console.log("[...new Set(siteFilter)]", [...new Set(siteFilter)]);
   }, [data]);
   const handleSiteChange = (dataList) => {
     if (siteSelectedItems.length) {
@@ -61,7 +63,8 @@ const FilterAutomation = ({ data, handleFilterData }) => {
   };
   const showArrowHandle = () => {
     setShowArrow(
-      wrapperRef.current.scrollWidth > wrapperRef.current.clientWidth || wrapperRef.current.clientWidth<600
+      wrapperRef.current.scrollWidth > wrapperRef.current.clientWidth ||
+        wrapperRef.current.clientWidth < 600
     );
   };
   const handleScroll = (value) => {
